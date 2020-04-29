@@ -1,0 +1,47 @@
+<form [formGroup]="form"  (ngSubmit)="submitForm()">
+    <div class="alert alert-danger" *ngIf="form.invalid && form.touched && form.errors.invalidLogin">  Login Failed</div>
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input 
+        type="text" 
+        id="userName" 
+        name="userName" 
+        class='form-control'  
+        formControlName="userName" 
+        (change)="onChange(userName)">
+        <div  *ngIf="userName.pending">Checking for Uniquness</div>
+        <div class="alert alert-danger" *ngIf="!userName.valid && userName.touched">
+            <div *ngIf="userName.errors.required"> 
+                User Name is required  
+            </div>
+            <div *ngIf="userName.errors.minlength">
+                 User Name should be minimum {{userName.errors.minlength.requiredLength}} characters  
+                </div>
+            <div *ngIf="userName.errors.maxlength">
+                 User Name should be maximum {{userName.errors.maxlength.requiredLength}} characters  
+                </div>
+                <div *ngIf="userName.errors.cannotContainSpace">
+                    User Name cannot contain empty spaces
+                </div>
+                <div *ngIf="userName.errors.shouldBeUnique"> 
+                    User Name is already taken
+                </div>
+           
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+        type="password" 
+        id="password" 
+        name="password" 
+        class='form-control' 
+        formControlName="password" (change)="onChangePassword(password)">
+        <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+            <div *ngIf="password.errors.required">Password is mandatory</div>
+            <div *ngIf="password.errors.minlength">Password should be minimum {{ password.errors.minlength.requiredLength}} Characters </div>
+            <div *ngIf="password.errors.pattern">Password doesn't match the pattern</div>
+        </div>
+    </div>
+    <button class="btn-btn-primary">Submit</button>
+</form>

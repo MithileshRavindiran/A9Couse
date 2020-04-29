@@ -1,0 +1,35 @@
+<div *ngIf="courses.length > 2; then coursesList else nocourses"></div>
+
+<ng-template #coursesList>My Courses</ng-template>
+<ng-template #nocourses>No Courses Yet</ng-template>
+
+<button (click)=addCourse()>Add</button>
+<div *ngFor="let course of courses, index as i">
+    <br/>
+    <ul>
+        {{i}} - {{course.name}}
+         <button (click)=removeCourse(course)>Remove</button>
+    </ul>
+</div>
+
+<div [hidden]="courses.length == 0">
+   List of Courses
+
+</div>
+
+<div [hidden]="courses.length > 0">
+    No  Courses Yet
+
+</div>
+
+<ul class="nav nav-pills">
+   <li [class.active]="viewMode == 'map'"><a (click)="viewMode ='map'">Map View</a></li>
+   <li [class.active]="viewMode == 'list'"><a (click)="viewMode ='list'">List View</a></li>
+</ul>
+
+<div [ngSwitch]="viewMode">
+    <div  *ngSwitchCase="'map'">Map view Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
+</div>
+

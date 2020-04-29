@@ -1,0 +1,42 @@
+<h2>{{"Title:" + title}}</h2>
+<img src="{{ imageUrl  }}"/>
+<!--Property  Binding -->
+<img [src]="imageUrl"/>
+<table>
+    <tr>
+        <!-- Attribute binding-->
+        <td [attr.colspan]="Colspan">Table Value</td>
+    </tr>
+</table>
+<ul>
+    <li *ngFor="let course of courses">{{course}}</li>
+</ul>
+
+<div>
+    <table>
+        <tr>{{courseDetails.title | uppercase}}</tr>
+        <tr>{{courseDetails.rating | number:'1.1-1' }}</tr>
+        <tr>{{courseDetails.students | number}}</tr>
+        <tr>{{courseDetails.price | currency:'USD':true:'2.1-1' }}</tr>
+        <tr>{{courseDetails.releaseDate | date:'fullDate'}}</tr>
+    </table>
+</div>
+<div>
+    {{text | summary:10}}
+</div>
+<!--Class binding [class.active] and Style Binding [style.backgroundColor]-->
+<!--event binding is click function  here-->
+<div (click)="onDivClick($event)">
+
+    <!-- One way binding just to get value of name from front end -->
+    <input #name (keyup.enter)="onKeyUpEnterName(name.value)"/>
+    <!-- TWO way binding  to get value of email from front end/ backend too -->
+    <input [(ngModel)]="email" (keyup.enter)="onKeyUpEnter()"/>
+<button 
+class="btn btn-primary" 
+[class.active]="isActive"  
+[style.backgroundColor]="isActive ? 'blue': 'red'"
+(click)="onClick($event)"
+>Save
+</button>
+</div>
