@@ -1,0 +1,10 @@
+.mr-3.rounded-circle {
+    width: 100px;
+    height: 100px;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    max-width: 100%;
+}

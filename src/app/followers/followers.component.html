@@ -1,0 +1,22 @@
+<div class="form-group">
+    <input type="text" class="form-control" #user (keyup.enter)="searchFollowers(user)">
+    <br/>
+    <div class="card form-group">
+        <div class="media" *ngIf="userPersonalInfo != null">
+            <img src={{userPersonalInfo.avatar_url}} class="mr-3 avatar" alt='userPersonalInfo.avatar_url'>
+            <div class="media-body">
+              <h5 class="mt-0">{{userPersonalInfo.login}}</h5>
+              <a href="{{userPersonalInfo.html_url}}">{{userPersonalInfo.html_url}}</a>
+            </div>
+          </div>
+        <h2>My Followers</h2>
+        <div class="media" *ngFor="let user of users">
+            <img src={{user.avatar_url}} class="mr-3 rounded-circle" alt='user.avatar_url'>
+            <div class="media-body">
+              <a [routerLink]="['./', user.id, user.login]"  [queryParams]="{page: 1, order:'newest'}">{{user.login}}</a>
+              <a href="{{user.html_url}}">{{user.html_url}}</a>
+            </div>
+          </div>
+    </div>
+    
+</div>
